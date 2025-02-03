@@ -86,6 +86,6 @@ chmod u+x for_docker/docker_cleanup.sh
 ### License
 - This project is licensed under the MIT License - see the [MIT License](LICENSE) file for details: 
 ---
-### Hope It Helps! - Enjoy adn Happy Coding ! 
+### Hope It Helps! - Enjoy and Happy Coding ! 
 ### :0)
 ---
