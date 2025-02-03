@@ -1,6 +1,52 @@
 #!/bin/bash
+# ==============================================================================================================
+# Script Name: [ vmstats.sh ] System Memory & CPU Monitoring [ vmstat / vm_stat ]
+#   Description:
+#       This script monitors memory and CPU statistics: 
+#        --> using `vmstat`  on [ Linux Distros ]
+#        --> using `vm_stat` on [ macOS         ] 
+#       It provides real-time system insights with color-coded output based on usage thresholds:
+#
+#   Features:
+#       - Detects the OS type and selects the appropriate command []`vmstat` or `vm_stat`]
+#       - Checks if the required cli is installed | will install if not found:
+#       - Allows users to set a monitoring interval and iteration count:
+#       - Displays system statistics with [ color-coded values ]
+#
+#   Usage:
+#       ./vmstats.sh [ time_interval ] [ iteration_count ]
+#
+#   Example:
+#       - Monitor every [0.5 seconds ] for [ 10 iterations ]
+#       ./vmstats.sh 0.5 10
+#
+# ==============================================================================================================
+#   More Info on  `vmstat` vs `vm_stat`: What's the Difference?
+#
+#   `vmstat` in [ Linux Distros ]
+#       - Displays [ CPU, memory, I/O ] and system performance statistics:
+#       - Comes [ pre-installed on most Linux distributions ] package name: `procps`
+#       - Command usage:
+#           [ vmstat 1 5 -t -w ]
+#       - Documentation: https://man7.org/linux/man-pages/man8/vmstat.8.html
+#
+#  `vm_stat` in [ macOS ]
+#       - Provides [ virtual memory statistics ]
+#       - Displays [ page activity instead of CPU stats --> unlike Linux `vmstat`]
+#       - Requires [ Xcode command-line tools ] on macOS:
+#       - Command usage:
+#           [ vm_stat 1 ]
+#       - Documentation: https://stackoverflow.com/questions/14150626/understanding-vm-stat-in-mac-os-how-to-convert-those-numbers-to-something-simil
+#                        https://www.oreilly.com/library/view/mac-os-x/0596003560/ch08s01s05.html
+#                        https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/VMPages.html       
+#
+#   Key Differences:
+#       `vmstat` in  [ Linux Distros ] shows      [ CPU, disk, and memory activity                ]
+#       `vm_stat` in [ macOS         ] focuses on [ memory paging ] [ free, active, inactive pages]
+# ==============================================================================================================
 
-# Define color codes for styling output
+
+# ... color formatting for warnings:
 gr='\033[1;32m'    # Green
 cy='\033[1;36m'    # Cyan
 yl='\033[1;33m'    # Yellow
@@ -9,11 +55,11 @@ wt='\033[1;37m'    # White
 gry='\033[0;37m'   # Gray
 coff='\033[0m'     # No color
 
-# Decorators for better script output
+# ... decorators: for visual separation in output
 decorator_init="echo -e ${yl}"$(printf '.%.0s' {1..70})"${coff}"
 decorator_done="echo -e ${gry}"$(printf '=%.0s' {1..70})"${coff}"
 
-# Usage instructions
+# ... instructions
 usage() {
     echo -e "\n\t${gr}Usage${coff} for ${yl}$(basename $0)${coff} script:"
     echo -e "\tArguments expected: [ ${wt}time_interval${coff} ] & [ ${wt}iteration_count${coff} ]"
@@ -22,7 +68,7 @@ usage() {
     exit 1
 }
 
-# Function to check for vm_stat or vmstat availability
+# ... check for vm_stat or vmstat availability:
 check_vmstat() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
         if ! command -v vm_stat &>/dev/null; then
@@ -49,7 +95,7 @@ check_vmstat() {
     fi
 }
 
-# Function to apply color thresholds for output
+# ... set color thresholds for output:
 colorize_output() {
     local value=$1
     local threshold_low=$2
@@ -57,23 +103,23 @@ colorize_output() {
     local output="$value"
 
     if (( $(echo "$value > $threshold_high" | bc -l) )); then
-        echo -e "${rd}$output${coff}"   # High consumption (red)
+        echo -e "${rd}$output${coff}"       #  ... high consumption    [ red    ]
     elif (( $(echo "$value > $threshold_low" | bc -l) )); then
-        echo -e "${yl}$output${coff}"   # Moderate consumption (yellow)
+        echo -e "${yl}$output${coff}"       # ... moderate consumption [ yellow ]
     else
-        echo -e "${gr}$output${coff}"   # Low consumption (green)
+        echo -e "${gr}$output${coff}"       # ... low consumption      [ green  ]
     fi
 }
 
-# Run the check before proceeding
+# ... run  check before proceeding:
 check_vmstat
 
-# Ensure both arguments are provided
+# ... args check:
 if [ "$#" -ne 2 ]; then
     usage
 fi
 
-# Parse and validate arguments
+# ... parse args:
 TIME_INTERVAL=$1
 ITER_COUNT=$2
 
@@ -85,16 +131,16 @@ fi
 echo -e "\n\tRunning ${gr}vm_stat${coff} or ${gr}vmstat${coff} call with:"
 echo -e "\t${cy}Interval: ${yl}${TIME_INTERVAL}${coff} seconds${cy}, Iterations: ${yl}${ITER_COUNT}${coff}\n"
 
-# Execute based on OS type
+# ... run based on OS type:
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    # macOS: Use vm_stat
+    # ... if macOS vm_stat:
     vm_stat -c $ITER_COUNT $TIME_INTERVAL | while IFS= read -r line; do
-        # Skip header
+        # ... skip header:
         if [[ "$line" == *"Mach Virtual Memory Statistics"* ]]; then
             echo -e "${cy}$line${coff}"
             continue
         fi
-        # Parse the key-value pairs
+        # ... parse key-value pairs:
         if [[ "$line" =~ ^Pages\ free:\ *([0-9]+) ]]; then
             free_pages=${BASH_REMATCH[1]}
             echo -e "Free Pages: $(colorize_output $free_pages 100000 500000)"
@@ -108,26 +154,17 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             speculative_pages=${BASH_REMATCH[1]}
             echo -e "Speculative Pages: $(colorize_output $speculative_pages 20000 50000)"
         else
-            echo -e "${gry}$line${coff}"  # Gray for unclassified lines
+            echo -e "${gry}$line${coff}"  #... gray for unclassified lines:
         fi
     done
 else
-    # Linux: Use vmstat
+    # ... if Linux vmstat:
     vmstat $TIME_INTERVAL $ITER_COUNT -S M -t -w | while IFS= read -r line; do
         if [[ "$line" =~ ^procs ]]; then
-            echo -e "${cy}$line${coff}"  # Highlight header
+            echo -e "${cy}$line${coff}"  # ... highlight header:
         else
             cpu_idle=$(echo "$line" | awk '{print $15}')
             echo -e "CPU Idle: $(colorize_output $cpu_idle 30 80)"
         fi
     done
 fi
-
-
-
-
-
-
-# uptime; echo "\nCurrent Directory: $(pwd)"; echo "\nFiles in Directory:"; ls -asl; echo "\nTotal File Count and Size:"; find . -type f -exec du -sh {} + | awk '{sum += $1} END {print "Count:", NR, "Total Size:", sum " KB"}'
-# uptime; echo -e "\nCurrent Directory: $(pwd)"; echo "\nFiles in Directory:"; tree .; echo "\nTotal File Count and Size:"; find . -type f -exec du -sh {} + | awk '{sum += $1} END {print "Count:", NR, "Total Size:", sum " KB"}'
-# uptime; echo -e "\nCurrent Directory: $(pwd)"; echo "\nFiles in Directory:"; tree .; echo "\nTotal File Count and Size:"; find . -type f -exec du -sh {} + | awk '{sum += $1} END {print "Count:", NR, "Total Size:", sum " KB"}'

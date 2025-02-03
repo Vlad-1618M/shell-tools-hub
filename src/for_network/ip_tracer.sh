@@ -15,13 +15,13 @@
 #     - Shows useful information about the network path:
 #
 #   Usage:
-#       sudo ./src/for_network/ip_traceit.sh
+#       sudo ./src/for_network/ip_tracer.sh
 #       - Prompts the user to enter an IP address for tracing:
 #       - If no IP is provided, it displays system IPs:
 #       - Runs `traceroute` and `mtr` on the given IP:
 #
 #   Example:
-#     sudo ./src/for_network/ip_traceit.sh
+#     sudo ./src/for_network/ip_tracer.sh
 #       Enter IP you'd like to trace or press Enter to see system IPs: 8.8.8.8
 #
 #   Expected Output:

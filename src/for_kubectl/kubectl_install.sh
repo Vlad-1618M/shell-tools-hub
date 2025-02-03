@@ -189,7 +189,7 @@ main() {
         if install_kubectl; then
             search_kubeconfig       # ... user promp to install → search for kubeconfig files:
         else
-            search_kubeconfig       # ...user promp for skipped installation → Still search for kubeconfig files:
+            search_kubeconfig       # ... user promp for skipped installation → Still search for kubeconfig files:
         fi
     fi
 }
