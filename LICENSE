@@ -1,21 +1,88 @@
-MIT License
+# ================================================================================================================
+# MIT License
+# ================================================================================================================
+#  © 2025 - All Rights Reserved  
+#  Copyright (c) 2025 Vlad Menshikov
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+#  associated documentation files (the "Software"), to deal in the Software without restriction,
+#  including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+#  and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+#  subject to the following conditions:
+#  
+#     The above copyright notice and this permission notice shall be included in all copies  
+#     or substantial portions of the any Software Code.
+#  
+#     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,  
+#     INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR  
+#     PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE  
+#     LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,  
+#     TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE  
+#     USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+#  Author      : Vlad Menshikov
+#  Created On  : 2025-01-20  
+#  Version     : 1.0.0  
+#  Contact     : dalvqsec@gmail.com
+#  Description : A set of useful shell scripts needed for everyday automation tasks.  
+#                Designed for **Developers, DevOps, Test Automation and IT Professionals**, 
+#               this suite of scripts helps streamline day-to-day operations and system administration tasks
+# ================================================================================================================
+# Project Structure - shell-tools-hub
+# ================================================================================================================
+#
+shell-tools-hub
+├── 📜 LICENSE
+├── 📖 README.md
+└── 📂 src
+    ├── 📁 for_ansible
+    │   └── 📜 install_ansible_galaxy_libs.sh
+    ├── 📁 for_docker
+    │   ├── 📜 active_container_logs.sh
+    │   ├── 📜 docker_cleanup.sh
+    │   ├── 📜 docker_container_stats.sh
+    │   ├── 📜 install_docker_compose.sh
+    │   └── 📜 redhat_docker_install.sh
+    ├── 📁 for_helm
+    │   └── 📜 helm_install.sh
+    ├── 📁 for_kubectl
+    │   └── 📜 kubectl_install.sh
+    ├── 📁 for_local_sys
+    │   ├── 📜 apple_device_details.sh
+    │   ├── 📜 deps_check_sys_tools.sh
+    │   ├── 📜 kill_terminal_sessions.sh
+    │   ├── 📜 new_terminal.sh
+    │   └── 📜 vmstats.sh
+    ├── 📁 for_network
+    │   ├── 📂 cfgs
+    │   │   ├── 🗒️ hosts.cfg
+    │   │   ├── 🗒️ native_tshark_cli_help.cfg
+    │   │   └── 🗒️ ssh.cfg
+    │   ├── 📂 domains
+    │   │   ├── 🗒️ domains.cfg
+    │   │   └── 📜 fqdn_ip_logger.sh
+    │   ├── 📜 firewalld.sh
+    │   ├── 📜 ip_tracer.sh
+    │   ├── 📜 net_stats_trace.sh
+    │   ├── 📜 nmaps.sh
+    │   ├── 📜 ports_ps_kill.sh
+    │   ├── 📜 selinux_check.sh
+    │   ├── 📜 setup_ssh_keys.sh
+    │   └── 📜 tshark.sh
+    ├── 📁 pkg_tar
+    │   ├── 📜 create_tar_pkg.sh
+    │   └── 📜 untar_pkg.sh
+    ├── 📁 random_scripts
+    │   └── 📂 open_urls_in_browser
+    │       ├── 🗒️ cfg.ini
+    │       ├── 🗒️ ebom.txt
+    │       ├── 📜 good_old_days.sh
+    │       └── 📜 open_urls.sh
+    ├── 📁 read_files
+    │   ├── 📜 file_observer.sh
+    │   ├── 📜 find_files.sh
+    │   └── 📜 smart_cat_highlighter.sh
+    └── 📁 shell_notes
+        └── 🗒️ oneliners.ini
 
-Copyright (c) 2025 Vlad
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+# ================================================================================================================
