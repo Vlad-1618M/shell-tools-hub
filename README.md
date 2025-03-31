@@ -1,4 +1,4 @@
-## A collection of shell scripts designed to automate everyday tasks, streamline workflows to enhance productivity: <br>
+## A collection of shell scripts designed to automate everyday tasks to streamline workflows: <br>
 
 ## Features:
 **Automated System Operations:** <br>
