@@ -21,9 +21,9 @@ if [[ ! -f "$file" ]]; then
     
     if [[ -n "$found_file" ]]; then
         file="$found_file"
-        echo -e "✅ Found: $file"
+        echo -e "Found: $file"
     else
-        echo -e "❌ ebom.txt not found. Creating it..."
+        echo -e "ebom.txt not found. Creating it..."
         file="$HOME/ebom.txt"
         cat > "$file" <<EOL
 
@@ -42,8 +42,8 @@ Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-cra
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 Notorious E-Bomb Variants
-✔ **JavaScript "Loop Bomb"**
+### --> Notorious E-Bomb Variants
+ **JavaScript "Loop Bomb"**
 \`\`\`html
 <script>
     while (true) {
@@ -51,9 +51,9 @@ Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-cra
     }
 </script>
 \`\`\`
-💥 This script **kept spawning** pop-ups until the browser crashed.
+--> This script **kept spawning** pop-ups until the browser crashed.
 
-✔ **"You Can't Close This" Bomb**
+ **"You Can't Close This" Bomb**
 \`\`\`html
 <script>
     function annoying() {
@@ -62,33 +62,32 @@ Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-cra
     annoying();
 </script>
 \`\`\`
-💥 Even if you closed one window, **it instantly reopened another**.
 
-✔ **Fake "Windows Error" Loop**
+ **Fake "Windows Error" Loop**
 - Some prank sites **simulated a Windows BSOD (Blue Screen of Death)** inside pop-ups.
 
-✔ **Internet Explorer Exploits (ActiveX + VBScript)**
+ **Internet Explorer Exploits (ActiveX + VBScript)**
 - Early **IE versions (4–6)** had weak security, allowing rogue sites to **launch infinite pop-ups**, modify system settings, or even trigger **fake shutdowns**.
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 How Did People Stop It?
+### --> How Did People Stop It?
 - **Task Manager (\`CTRL+ALT+DEL\`) → Kill Browser Process**
-- ** Hold \`ALT+F4\` like a madman** 💀
+- ** Hold \`ALT+F4\` like a madman** :))
 - ** Disable JavaScript (Netscape/IE Security Settings)**
 - ** Ad-blockers (once they became a thing)**
 - ** Pop-up blockers** (later added in browsers like Firefox & Chrome)
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 Why Was It Called an "E-Bomb"?
+### --> Why Was It Called an "E-Bomb"?
 - Similar to a **DDoS attack**, but instead of crashing servers, it **crashed individual browsers**.
 - Felt like **a "bomb" going off on your screen**—chaos, overload, and system lag.
 - We used it as an internet trolling aka warfare in early online days ... :)) 
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 The Modern Equivalent?
+### --> The Modern Equivalent?
 Today’s version of an E-Bomb could be ...
 - **  "Notification spam"      [ websites forcing constant browser notifications ]
 - **  Infinite redirect loops  [ some phishing/malware sites                     ]
@@ -98,12 +97,12 @@ Today’s version of an E-Bomb could be ...
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 WERE YOU A VICTIM OR A PRANKSTER ? 
+### --> WERE YOU A VICTIM OR A PRANKSTER ? 
 Did you ever get hit with an E-Bomb, or maybe you were *- the one -* sending links to unsuspecting friends .. :))  
-    .... thankfully, computers are stronger now, and this is just a fun shell script memory 😂
+    .... thankfully, computers are stronger now, and this is just a fun shell script memory :))
 
 EOL
-        echo -e "✅ Created new ebom.txt at: $file"
+        echo -e "Created new ebom.txt at: $file"
     fi
 fi
 

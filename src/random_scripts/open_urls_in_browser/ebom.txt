@@ -4,7 +4,7 @@
 
 Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-crashing nightmare** of the early internet
 
-### 🔹 What Was an "E-Bomb" Online?
+### ---> What Was an "E-Bomb" Online?
 - A **browser attack** that **flooded users with infinite pop-up windows**.
 - Could **crash computers** by eating up RAM & CPU.
 - Often **used on prank sites, warez pages, or shady forums**.
@@ -13,7 +13,7 @@ Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-cra
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 Notorious E-Bomb Variants
+### ---> E-Bomb Variants
 ✔ **JavaScript "Loop Bomb"**
 \`\`\`html
 <script>
@@ -22,7 +22,7 @@ Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-cra
     }
 </script>
 \`\`\`
-💥 This script **kept spawning** pop-ups until the browser crashed.
+--> This script **kept spawning** pop-ups until the browser crashed.
 
 ✔ **"You Can't Close This" Bomb**
 \`\`\`html
@@ -33,7 +33,7 @@ Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-cra
     annoying();
 </script>
 \`\`\`
-💥 Even if you closed one window, **it instantly reopened another**.
+-->  Even if you closed one window, **it instantly reopened another**.
 
 ✔ **Fake "Windows Error" Loop**
 - Some prank sites **simulated a Windows BSOD (Blue Screen of Death)** inside pop-ups.
@@ -43,7 +43,7 @@ Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-cra
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 How Did People Stop It?
+### --> How Did People Stop It?
 - **Task Manager (\`CTRL+ALT+DEL\`) → Kill Browser Process**
 - ** Hold \`ALT+F4\` like a madman** 💀
 - ** Disable JavaScript (Netscape/IE Security Settings)**
@@ -52,14 +52,14 @@ Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-cra
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 Why Was It Called an "E-Bomb"?
+### --> Why Was It Called an "E-Bomb"?
 - Similar to a **DDoS attack**, but instead of crashing servers, it **crashed individual browsers**.
 - Felt like **a "bomb" going off on your screen**—chaos, overload, and system lag.
 - We used it as an internet trolling aka warfare in early online days ... :)) 
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 The Modern Equivalent?
+### --> The Modern Equivalent?
 Today’s version of an E-Bomb could be ...
 - **  "Notification spam"      [ websites forcing constant browser notifications ]
 - **  Infinite redirect loops  [ some phishing/malware sites                     ]
@@ -69,6 +69,6 @@ Today’s version of an E-Bomb could be ...
 
 ------------------------------------------------------------------------------------------------------------------
 
-### 🔹 WERE YOU A VICTIM OR A PRANKSTER ? 
+### --> WERE YOU A VICTIM OR A PRANKSTER ? 
 Did you ever get hit with an E-Bomb, or maybe you were *- the one -* sending links to unsuspecting friends .. :))  
     .... thankfully, computers are stronger now, and this is just a fun shell script memory 😂

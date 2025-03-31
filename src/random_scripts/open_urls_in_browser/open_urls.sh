@@ -66,10 +66,10 @@ while IFS= read -r url; do
 
     # ... try URL before opening it in default browser: 
     if check_url "$url"; then
-        echo -e "✅ \t --> Accessible"
+        echo -e "\t --> Accessible"
         open_url "$url"
     else
-        echo -e "❌ \t --> Unreachable"
+        echo -e "\t --> Unreachable"
         unreachable_urls+=("$url")
     fi
 
@@ -78,9 +78,9 @@ done < "$urls_file"
 
 # ... show unreachable URLs, if any
 if [[ ${#unreachable_urls[@]} -gt 0 ]]; then
-    echo -e "\n🚨\tThe following URLs were unreachable: check $(basename $urls_file)"
+    echo -e "\n\tThe following URLs were unreachable: check $(basename $urls_file)"
     for bad_url in "${unreachable_urls[@]}"; do
-        echo -e "❌ \t --> $bad_url"
+        echo -e "\t --> $bad_url"
     done
 fi
 
@@ -88,9 +88,9 @@ sleep 1
 file_path=$(find "$(pwd)" -type f -name "good_old_days.sh" 2>/dev/null | head -n 1)
 
 if [[ -n "$file_path" ]]; then
-    echo -e "✅\n\n\t -->  Found: $file_path"
+    echo -e "\n\n\t -->  Found: $file_path"
     chmod +x "$file_path"
     eval "$file_path"
 else
-    echo -e "❌ good_old_days.sh not found :("
+    echo -e "good_old_days.sh not found :("
 fi

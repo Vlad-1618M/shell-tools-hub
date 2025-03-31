@@ -26,7 +26,7 @@ print_separator() {
 check_helm() {
     if command -v helm >/dev/null 2>&1; then
         print_separator
-        print_message "32" "✅ Helm is already installed."
+        print_message "32" "Helm is already installed."
         helm_version=$(helm version --short 2>/dev/null)
         helm_path=$(command -v helm)
         print_message "37" "Version: \033[36m${helm_version}\033[0m"
@@ -34,7 +34,7 @@ check_helm() {
         print_separator
         return 0  # ... success Helm exists | already installed:
     else
-        print_message "33" "⚠️  Helm is not installed."
+        print_message "33" "Helm is not installed."
         return 1  # ... Helm missing or not found or not installed: 
     fi
 }
@@ -48,13 +48,13 @@ install_helm() {
         [Yy]*)
             ;;
         *)
-            print_message "31" "❌ Skipping Helm installation."
+            print_message "31" "Skipping Helm installation."
             return 1  # ... skipped installation:
             ;;
     esac
 
     print_separator
-    print_message "32" "🚀 Installing Helm..."
+    print_message "32" "Installing Helm..."
 
     # ... download get_helm.sh installation script:
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -68,18 +68,18 @@ install_helm() {
     rm -f get_helm.sh
 
     if [[ $install_status -ne 0 ]]; then
-        print_message "31" "❌ Helm installation failed!"
+        print_message "31" "Helm installation failed!"
         return 1  # ... failure | installation failed: 
     fi
 
-    print_message "32" "✅ Helm installation completed successfully."
+    print_message "32" "Helm installation completed successfully."
 
     # ... verify Helm installation:
     helm version --short
 
     # ... install Helm Diff plugin:
     print_separator
-    print_message "32" "📌 Installing Helm Diff plugin..."
+    print_message "32" "Installing Helm Diff plugin..."
     helm plugin install https://github.com/databus23/helm-diff
 }
 
