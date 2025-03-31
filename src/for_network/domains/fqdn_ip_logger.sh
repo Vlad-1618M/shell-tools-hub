@@ -18,52 +18,52 @@
 #
 # ===============================================================================
 #
-# 🔹 **Differences Between CURL, DIG, and NSLOOKUP**
+# **Differences Between CURL, DIG, and NSLOOKUP**
 #
-# 1️⃣ **CURL** (Connection Testing)
+# 1. **CURL** (Connection Testing)
 #      - Used to test whether the domain is **accessible over HTTP/HTTPS**.
 #      - Fetches the **HTTP status code** (e.g., `200 OK`, `404 Not Found`).
 #      - Does **not** perform a DNS lookup directly.
 #
-# 2️⃣ **DIG** (DNS Query)
+# 2. **DIG** (DNS Query)
 #      - Queries DNS records to find the **IP address of a domain**.
 #      - Uses the system's **configured DNS servers**.
 #      - Preferred for **checking actual DNS resolution**.
 #
-# 3️⃣ **NSLOOKUP** (Legacy DNS Query)
+# 3. **NSLOOKUP** (Legacy DNS Query)
 #      - Similar to `dig` but **older** and sometimes less detailed.
 #      - Useful for **quick lookups** and debugging.
 #
 # ===============================================================================
 #
-# 🔹 **Requirements & Installation**
+# **Requirements & Installation**
 #
 # The script requires the following utilities:
 #
-# ✅ **CURL** → Used to check HTTP response codes.
-# ✅ **DIG**  → Used for DNS resolution (part of `bind-utils` or `dnsutils`).
-# ✅ **NSLOOKUP** → Used for alternative DNS lookups.
+# **CURL** → Used to check HTTP response codes.
+# **DIG**  → Used for DNS resolution (part of `bind-utils` or `dnsutils`).
+# **NSLOOKUP** → Used for alternative DNS lookups.
 #
 # Install them using the following commands:
 #
-# 📌 **macOS (Homebrew)**
+# **macOS (Homebrew)**
 # ```sh
 # brew install curl
 # brew install bind  # (Includes `dig`)
 # ```
 #
-# 📌 **Debian/Ubuntu (APT)**
+# **Debian/Ubuntu (APT)**
 # ```sh
 # sudo apt update
 # sudo apt install curl dnsutils
 # ```
 #
-# 📌 **Red Hat/CentOS/Fedora (DNF/YUM)**
+# **Red Hat/CentOS/Fedora (DNF/YUM)**
 # ```sh
 # sudo dnf install curl bind-utils
 # ```
 #
-# 📌 **Arch Linux (Pacman)**
+# **Arch Linux (Pacman)**
 # ```sh
 # sudo pacman -S curl bind
 # ```
@@ -89,16 +89,16 @@ GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
 CYAN="\033[1;36m"
 grey="\033[0;37m"
-_off="\033[0m" # No color
+_off="\033[0m" # .. color off:
 
 decorator_init="echo -e ${grey}"$(printf '_%.0s' {1..50})"${_off}"
 decorator_done="echo -e ${grey}"$(printf '=%.0s' {1..50})"${_off}"
 
-# Configurations
+# ... configurations
 config_file="domains.cfg"
 log_file="ip_results.log"
 
-# Fu_offtion to read domain names from configuration file
+#... read domain names from config file:
 read_domains() {
   local config_file=$1
   if [ ! -f "$config_file" ]; then
@@ -112,11 +112,11 @@ read_domains() {
   count=0  # Initialize counter
 
   while IFS= read -r line; do
-    # Skip empty lines and comments
+    # ... skip empty lines and comments:
     [[ -z "$line" || "$line" =~ ^# ]] && continue
     domains+=("$line")
-    count=$((count + 1))                                      # Increment counter
-    echo -e "\t${CYAN}$count ${grey}-->\t${white}$line${_off}"  # Display domain with counter
+    count=$((count + 1))                                        # ... increment counter
+    echo -e "\t${CYAN}$count ${grey}-->\t${white}$line${_off}"  # ... display domain with counter
   done < "$config_file"
   $decorator_done
   echo -e "Total domains read: ${GREEN}$count${_off}"
@@ -128,25 +128,15 @@ resolve_with_curl() {
   local ip
   local http_status
   # local log_file="curl_resolve.log" # Log file path
+  curl_output=$(curl -sI "$domain" 2>&1)                                                    # ... fetch headers from domain:
+  http_status=$(echo "$curl_output" | grep -oE "HTTP/[0-9.]+ [0-9]{3}" | awk '{print $2}')  # ... extract HTTP status (e.g., HTTP/2 200 or HTTP/1.1 404)
+  base_domain=$(echo "$domain" | awk -F/ '{print $3}')                                      # ... extract base domain name:
+  timestamp="[$(date +'%Y-%m-%d %H:%M:%S')]"                                                # ... log timestamp
 
-  # Fetch headers from the domain
-  curl_output=$(curl -sI "$domain" 2>&1)
-
-  # Extract HTTP status (e.g., HTTP/2 200 or HTTP/1.1 404)
-  http_status=$(echo "$curl_output" | grep -oE "HTTP/[0-9.]+ [0-9]{3}" | awk '{print $2}')
-
-  # Extract the base domain name
-  base_domain=$(echo "$domain" | awk -F/ '{print $3}')
-  
-  # Log timestamp
-  timestamp="[$(date +'%Y-%m-%d %H:%M:%S')]"
-
-  # Check if the HTTP status indicates success
+  # ... HTTP status check | look for success respose:
   if [ "$http_status" = "200" ]; then
-    # Resolve IP using dig
+    # ... resolve IP using dig:
     ip=$(dig +short "$base_domain" | head -n 1)
-
-    # If IP resolution fails
     if [ -z "$ip" ]; then
       ip="IP not found"
       printf "CURL: %-35s ${YELLOW}%-12s${_off} %-50s\n" "$domain" "Connected" "$ip"
@@ -160,8 +150,6 @@ resolve_with_curl() {
     printf "CURL: ${white}%-35s ${RED}%-12s${_off} ${grey}%-16s${RED}%s\n" "$domain" "Failed" "Status:" "$http_status"
     echo "${timestamp} [ERROR] Domain: $domain | Status: Failed | HTTP Status: $http_status" >> "$log_file"
   fi
-
-  # Add visual decorator to the log file
   >> "$log_file"
 }
 
@@ -179,7 +167,7 @@ resolve_with_dig() {
   fi
 }
 
-# Fu_offtion to resolve domains using `nslookup`
+# ... resolve domains using `nslookup`
 resolve_with_nslookup() {
   local domain=$1
   result=$(nslookup "$domain" 2>&1)
@@ -194,7 +182,7 @@ resolve_with_nslookup() {
   fi
 }
 
-# Main fu_offtion to prompt user for resolution method
+# ... prompt user for supported methods
 resolve_domains() {
   echo -e "\n${YELLOW}Choose a resolution method:${_off}"
   echo -e ${CYAN}"1.${_off} CURL"
@@ -226,15 +214,10 @@ resolve_domains() {
     $resolver "$domain"
   done
 }
-
-# Start of the script
 $decorator_init
 echo -e "\t${YELLOW}>>> ${_off}Domain Resolution Script ${YELLOW}<<<${_off}"
-
-# Read domain names from configuration file
 read_domains "$config_file"
 
-# Prompt user for resolution method and resolve domains
 resolve_domains
 $decorator_done
 echo -e "${GREEN}Resolution completed. Check $log_file for details.${_off}"
