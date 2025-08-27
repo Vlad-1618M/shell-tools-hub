@@ -64,7 +64,7 @@ chmod u+x for_docker/docker_cleanup.sh
 ```
 >- To list available scripts:
 ``` bash
-    find src -type f -name "*.sh"
+    find . -type f -name "*.sh"
 ```
 ---
 >- Contribution <br>
