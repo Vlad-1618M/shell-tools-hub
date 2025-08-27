@@ -1,0 +1,71 @@
+# ===============================================================================
+# THE "E-BOMB" - INTERNET CHAOS FROM THE LATE 90s / EARLY 2000s :))
+# ===============================================================================
+
+Ah, the **E-Bomb**—not the electromagnetic pulse weapon, but the **browser-crashing nightmare** of the early internet
+
+### ---> What Was an "E-Bomb" Online?
+- A **browser attack** that **flooded users with infinite pop-up windows**.
+- Could **crash computers** by eating up RAM & CPU.
+- Often **used on prank sites, warez pages, or shady forums**.
+- Usually executed with **JavaScript, VBScript, or ActiveX exploits**.
+- **Some versions were unkillable**—closing one window would spawn more.
+
+------------------------------------------------------------------------------------------------------------------
+
+### ---> E-Bomb Variants
+✔ **JavaScript "Loop Bomb"**
+\`\`\`html
+<script>
+    while (true) {
+        window.open('https://victimsite.com');
+    }
+</script>
+\`\`\`
+--> This script **kept spawning** pop-ups until the browser crashed.
+
+✔ **"You Can't Close This" Bomb**
+\`\`\`html
+<script>
+    function annoying() {
+        setTimeout("window.open('https://victimsite.com');", 1);
+    }
+    annoying();
+</script>
+\`\`\`
+-->  Even if you closed one window, **it instantly reopened another**.
+
+✔ **Fake "Windows Error" Loop**
+- Some prank sites **simulated a Windows BSOD (Blue Screen of Death)** inside pop-ups.
+
+✔ **Internet Explorer Exploits (ActiveX + VBScript)**
+- Early **IE versions (4–6)** had weak security, allowing rogue sites to **launch infinite pop-ups**, modify system settings, or even trigger **fake shutdowns**.
+
+------------------------------------------------------------------------------------------------------------------
+
+### --> How Did People Stop It?
+- **Task Manager (\`CTRL+ALT+DEL\`) → Kill Browser Process**
+- ** Hold \`ALT+F4\` untill OS goes into the coma..** 
+- ** Disable JavaScript (Netscape/IE Security Settings)**
+- ** Ad-blockers (once they became a thing)**
+- ** Pop-up blockers** (later added in browsers like Firefox & Chrome)
+
+------------------------------------------------------------------------------------------------------------------
+
+### --> Why Was It Called an "E-Bomb"?
+- Similar to a **DDoS attack**, but instead of crashing servers, it **crashed individual browsers**.
+- Felt like **a "bomb" going off on your screen**—chaos, overload, and system lag.
+- We used it as an internet trolling aka warfare in early online days ... :)) 
+
+------------------------------------------------------------------------------------------------------------------
+
+### --> The Modern Equivalent?
+Today’s version of an E-Bomb could be ...
+- **  "Notification spam"      [ websites forcing constant browser notifications ]
+- **  Infinite redirect loops  [ some phishing/malware sites                     ]
+- **  Fake captchas/pop-up ads [ forcing interaction.                            ]
+
+.. but, what do I know.. I am just a dude with a fancy laptop ...  ¯\_(ツ)_/¯ 
+
+------------------------------------------------------------------------------------------------------------------
+

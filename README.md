@@ -37,17 +37,18 @@
 ## shell-tools-hub
 - [LICENSE](LICENSE)
 - [README.md](README.md)
-- [src](src)
-- [for_ansible](src/for_ansible)
-- [for_docker](src/for_docker)
-- [for_helm](src/for_helm)
-- [for_kubectl](src/for_kubectl)
-- [for_local_sys](src/for_local_sys)
-- [for_network](src/for_network)
-- [pkg_tar](src/pkg_tar)
-- [random_scripts](src/random_scripts)
-- [read_files](src/read_files)
-- [shell_notes](src/shell_notes)
+- [for_ansible](/for_ansible/)
+- [for_docker](/for_docker/)
+- [mp3_converter](/for_ffmpeg_converter/mp3/)
+- [mp4_converter](/for_ffmpeg_converter/mp4/)
+- [for_helm](/for_helm/)
+- [for_kubectl](/for_kubectl/)
+- [for_local_sys](/for_local_sys/)
+- [for_network](/for_network/)
+- [pkg_tar](/pkg_tar/)
+- [random_scripts](/random_scripts/)
+- [read_files](/read_files/)
+- [shell_notes](/shell_notes/)
 ---
 
 # Installation & Usage
@@ -63,7 +64,7 @@ chmod u+x for_docker/docker_cleanup.sh
 ```
 >- To list available scripts:
 ``` bash
-    find src -type f -name "*.sh"
+    find . -type f -name "*.sh"
 ```
 ---
 >- Contribution <br>
@@ -72,6 +73,6 @@ chmod u+x for_docker/docker_cleanup.sh
 ### License
 - This project is licensed under the MIT License - see the [MIT License](LICENSE) file for details: 
 ---
-### Hope It Helps! - Enjoy and Happy Coding ! 
+### Hope It Helps!
 ### :0)
 ---
