@@ -1,4 +1,6 @@
+
 # Bash/Shell One-Liner Cheat Sheet:
+
 ### Basic Execution Loops:
 
 >- These are for running a command a specific number of times:
