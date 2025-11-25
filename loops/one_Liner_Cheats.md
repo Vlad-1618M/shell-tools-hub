@@ -44,5 +44,4 @@ for ((i=0; i<5; i++)); do ./some_binary_file | jq '.status'; sleep 1; done
 ```bash
 { for ((x=0; x<10; x++)); do ./some_binary_file | tr -dc '[:print:]' | awk '{printf "{\"output\": \"%s\"}", $0}'; sleep 2; done; } | jq --slurp '.' > all.json
 ```
-
 ___
